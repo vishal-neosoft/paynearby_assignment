@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class="form-group col-sm-12">
+    <%= form.label :room_id,  class: "control-label col-sm-2" %>
+    <div class="col-sm-3">
+      <%= form.select :room_id, options_from_collection_for_select(@rooms, :id, :room_no),{prompt: "Select atleast one"}, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :room_id %>
-    <%= form.text_field :room_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :booking_date %>
-    <%= form.datetime_select :booking_date %>
+  <div class="form-group col-sm-12">
+    <%= form.label :booking_date,  class: "control-label col-sm-2" %>
+    <div class="col-sm-3">
+      <%= form.text_field :booking_date, class: "datepicker form-control" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+   $('.datepicker').datepicker({
+     minDate: new Date()
+   });
+  });
+</script>
