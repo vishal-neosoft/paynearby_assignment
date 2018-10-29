@@ -52,3 +52,6 @@
  .wrapper {
      text-align: center;
  }
+.errors{
+  color: red;
+}

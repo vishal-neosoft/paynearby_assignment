@@ -10,7 +10,16 @@
   </head>
   <body>
     <div class="container">
-      <%= yield %>
+      <div class="row">
+          <div class="col-md-offset-4 col-md-4">
+            <div class="form-login">
+              <%= yield %>
+            </div>
+          </div>
+      </div>
     </div>
   </body>
+  <script>
+    $(".errors").fadeOut(2500);
+  </script>
 </html>
