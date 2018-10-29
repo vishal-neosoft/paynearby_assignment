@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bookings
   root 'main#home'
   get 'main/dashboard'
   devise_for :users

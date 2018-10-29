@@ -11,7 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap
- *= require_tree .
+ *= require main
+ *= require bookings
+ * require_tree .
  *= require_self
  */
 

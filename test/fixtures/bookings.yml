@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  room: one
+  status: MyString
+  booking_date: 2018-10-29 18:11:26
+
+two:
+  user: two
+  room: two
+  status: MyString
+  booking_date: 2018-10-29 18:11:26
