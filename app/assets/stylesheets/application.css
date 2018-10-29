@@ -14,3 +14,31 @@
  *= require_tree .
  *= require_self
  */
+
+
+.homepage{
+  margin-top: 10%;
+}
+
+.main-page{
+  background-color: #333;
+  border-radius: 20px;
+  padding: 100px;
+}
+
+.main-logo{
+  margin: auto;
+  display: block;
+}
+
+.nav-btns{
+  text-align: center;
+  margin-top: 40px;
+}
+
+
+
+.nav-logo {
+    margin-top: -17px;
+    height: inherit;
+}
