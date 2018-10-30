@@ -1,26 +1,25 @@
+<% content_for :my_booking_class, 'active' %>
 <h1>Bookings</h1>
 <%= link_to 'New Booking', new_booking_path, class: "btn btn-primary" %>
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>User</th>
       <th>Room</th>
       <th>Status</th>
       <th>Booking date</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= booking.user %></td>
-        <td><%= booking.room %></td>
+        <td><%= booking.room.room_no %></td>
         <td><%= booking.status %></td>
-        <td><%= booking.booking_date %></td>
+        <td><%= booking.booking_date.strftime("%Y-%m-%d") %></td>
         <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%#= link_to 'Edit', edit_booking_path(booking) %></td> -->
+        <td><%= link_to_if booking.status != "Canceled", 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

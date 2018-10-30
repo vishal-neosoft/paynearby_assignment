@@ -1,13 +1,22 @@
+<% content_for :my_booking_class, 'active' %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @booking.user %>
+  <strong>Room:</strong>
+  <%= @booking.room.room_no %>
 </p>
 
 <p>
-  <strong>Room:</strong>
-  <%= @booking.room %>
+  <strong>Room Amenities: </strong>
+  <ul>
+    <% @booking.room.room_category.amenities.each do |amenity| %>
+      <li><%= amenity.name %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+    <strong>Room Price: </strong><%= number_to_currency(@booking.room.room_category.price, unit: "$") %>
 </p>
 
 <p>
@@ -15,10 +24,11 @@
   <%= @booking.status %>
 </p>
 
+
 <p>
   <strong>Booking date:</strong>
-  <%= @booking.booking_date %>
+  <%= @booking.booking_date.strftime("%Y-%m-%d") %>
 </p>
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to_if @booking.status != "Canceled", 'Cancel', @booking, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', bookings_path %>

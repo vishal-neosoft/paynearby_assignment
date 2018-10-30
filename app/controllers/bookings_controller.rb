@@ -20,18 +20,22 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+    @rooms = Room.available_rooms
   end
 
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
-
+    @booking = current_user.bookings.new(booking_params)
+    @booking.status = "Approved"
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        @booking.room.update(is_available: false)
+        @rooms = Room.available_rooms
+        format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
+        @rooms = Room.available_rooms
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
@@ -43,7 +47,7 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to bookings_path, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit }
@@ -55,7 +59,8 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
-    @booking.destroy
+    @booking.update(status: "Canceled")
+    @booking.room.update(is_available: true)
     respond_to do |format|
       format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }

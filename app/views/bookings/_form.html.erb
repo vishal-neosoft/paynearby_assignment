@@ -32,8 +32,10 @@
 
 <script>
   $(document).ready(function(){
-   $('.datepicker').datepicker({
-     minDate: new Date()
-   });
+    $('.datepicker').datepicker({
+      startDate: new Date(),
+      endDate: "+6m",
+      format: 'yyyy-mm-dd'
+    });
   });
 </script>
