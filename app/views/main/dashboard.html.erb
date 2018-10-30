@@ -1,1 +1,24 @@
-
+<div class="row">
+     <div class="col-md-2">
+          <div class="card my-card">
+               <div class="card-block">
+                 <div class="card-body">
+                   <h4 class="card-title">My Bookings</h4>
+                   <p class="card-text">Total Bookings: <%= current_user.bookings.count %></p>
+                   <%= link_to "My Bookings", bookings_path, class: "btn btn-primary" %>
+                  </div>
+               </div>
+          </div>
+     </div>
+     <div class="col-md-2">
+          <div class="card my-card">
+               <div class="card-block">
+                 <div class="card-body">
+                   <h4 class="card-title">My Profile</h4>
+                   <p class="card-text">Last Updated: <%= current_user.updated_at.strftime('%Y-%m-%d') %></p>
+                   <%= link_to "My Profile", edit_user_registration_path, class: "btn btn-primary" %>
+                  </div>
+               </div>
+          </div>
+     </div>
+</div>
